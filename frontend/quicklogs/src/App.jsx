@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import './button.css'
 import axios from 'axios'
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
     }
 
     axios
-      .post(`http://localhost:5555/logs/${logID}`, data)
+      .post(`${dbLogList}/${logID}`, data)
       .then(() => {
         alert('Log created!')
       })
@@ -47,6 +48,7 @@ function App() {
       .get(dbLogList)
       .then((response) => {
         setCreatedLogs(response.data.data)
+        createdLogs.sort()
         console.log(createdLogs)
       })
   }, [dbLogList])
@@ -72,18 +74,24 @@ function App() {
         <h1>quicklogs</h1>
         <input value={logID} onChange={e => {
           setLogID(e.target.value)
-        }} /><br></br><br></br>
-        {success === true && logID !== '' ?
-          <div>
-            <a href={`https://logs.tf/${logID}`} target='_blank'>{tfLogs.title}</a><br></br>
-            <button onClick={handleSaveLog}>Save log</button>
-          </div>
-          :
-          <p>Log not found!</p>}
+        }} /><br/>
         <div>
-          {createdLogs.map((createdLog) => {
-            return <p>{createdLog.title}</p>
-          })}
+          {success === true && logID !== '' ?
+            <div>
+              <a href={`https://logs.tf/${logID}`} target='_blank'>{tfLogs.title}</a>
+              <button className='remove-focus' onClick={handleSaveLog}>+</button><br /><br />
+            </div>
+            :
+            <h2>Log not found!</h2>}
+          <div style={{ textAlign: 'center' }}>
+            {createdLogs.map((createdLog) => {
+              return (
+                <div>
+                  <a href={`https://logs.tf/${logID}`} target='_blank'>{createdLog.title}</a><br />
+                </div>
+              )
+            })}
+          </div>
         </div>
       </ul>
     </div>
