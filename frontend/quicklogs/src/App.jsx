@@ -87,7 +87,7 @@ function App() {
             {createdLogs.map((createdLog) => {
               return (
                 <div>
-                  <a href={`https://logs.tf/${logID}`} target='_blank'>{createdLog.title}</a><br />
+                  <a href={`https://logs.tf/${createdLog.log_id}`} target='_blank'>{createdLog.title}</a><br />
                 </div>
               )
             })}
