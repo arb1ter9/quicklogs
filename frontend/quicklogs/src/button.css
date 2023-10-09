@@ -1,5 +1,16 @@
-.remove-focus {
-    outline: none;
-    box-shadow: none;
-    box-sizing: border-box;
-  }
+.input-container {
+  align-items: center;
+}
+
+.input-box {
+  flex: 1;
+}
+
+.add-button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+}
