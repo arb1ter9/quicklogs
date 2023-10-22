@@ -1,6 +1,6 @@
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js"
-import mongoose, { get } from "mongoose";
+import mongoose, { get, mongo } from "mongoose";
 import { Log } from "./models/logModels.js"
 import cors from 'cors'
 import axios from 'axios'

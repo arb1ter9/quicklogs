@@ -7,10 +7,11 @@
 }
 
 .add-button {
+  position: relative;
   cursor: pointer;
   border: none;
   background-color: transparent;
-  margin-left: 10px;
   width: 30px;
   height: 30px;
+  top: 10px;
 }

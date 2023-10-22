@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import './button.css';
 import axios from 'axios';
-import { set } from 'mongoose';
 
 function App() {
   const [tfLogs, setTfLogs] = useState({});
@@ -81,21 +80,21 @@ function App() {
         {loading ? (
           <></>
         ) : logID !== '' && success === true ? (
-          <div style={{ top: '-100px' }}>
+          <div>
             <a href={`https://logs.tf/${logID}`} target='_blank'>{tfLogs.title}</a>
             <img src='/plus-button.png' alt='Add log' className='add-button' onClick={handleSaveLog} />
           </div>
         ) : logID === '' ? (
           <></>
         ) : (
-          <h2 style={{ top: '-100px' }}>Log not found!</h2>
+          <h2>Log not found!</h2>
         )}
       </div>
-      <div>
+      <div className='logs-list'>
         {createdLogs.map((createdLog) => {
           return (
             <>
-              <a href={`https://logs.tf/${createdLog.log_id}`} target='_blank'>{createdLog.title}</a><br />
+              <a href={`https://logs.tf/${createdLog.log_id}`} target='_blank'>{createdLog.title}</a>
             </>
           )
         })}
