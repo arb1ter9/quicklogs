@@ -59,24 +59,8 @@ input[type=number] {
   /* border: 3px solid blue; */
 }
 
-.input-box {
-  /* border: 3px solid green; */
-}
-
 .center {
   top: 50%;
   justify-content: center;
   align-items: center;
-}
-
-.logs-list {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  top: 25%;
-  bottom: 25%;
-  left: 25%;
-  right: 25%;
 }

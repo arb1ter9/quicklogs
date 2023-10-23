@@ -1,0 +1,11 @@
+.logs-list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 25%;
+    bottom: 25%;
+    left: 25%;
+    right: 25%;
+  }
