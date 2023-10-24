@@ -59,6 +59,7 @@ app.get('/logs', async (request, response) => {
     }
 });
 
+console.log('Attempting to connect to database');
 mongoose
     .connect(mongoDBURL)
     .then(() => {

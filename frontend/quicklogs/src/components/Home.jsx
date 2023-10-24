@@ -2,21 +2,21 @@ import { useEffect, useState } from 'react';
 import './Home.css';
 import './button.css';
 import axios from 'axios';
+import plusButton from '../assets/plus-button.png'
 
 function Home() {
   const [tfLogs, setTfLogs] = useState({});
-  const [createdLogs, setCreatedLogs] = useState([]);
   const [logID, setLogID] = useState('');
   const [success, setSuccess] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [logLoading, setLogLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   // const logsListURL = 'https://logs.tf/api/v1/log?limit=100';
   const getLog = `http://logs.tf/api/v1/log/${logID}`;
   const dbLogList = 'http://localhost:5555/logs';
 
   const handleSaveLog = async () => {
-    setLogLoading(true);
+    setDisabled(true);
     let logTitle = '';
     let logMatchLength = 0;
     let logPlayers = 0;
@@ -39,12 +39,13 @@ function Home() {
       .post(`${dbLogList}/${logID}`, data)
       .then(() => {
         alert('Log created!');
-        setLogLoading(false);
+        setDisabled(false);
       })
       .catch(() => {
         alert('Could not add log');
-        setLogLoading(false);
-      })
+        setDisabled(false);
+      });
+    console.log(disabled);
   };
 
   const getLogData = async () => {
@@ -62,15 +63,6 @@ function Home() {
   };
 
   useEffect(() => {
-    axios
-      .get(dbLogList)
-      .then((response) => {
-        const sortedLogs = response.data.data.sort((a, b) => a.log_id - b.log_id);
-        setCreatedLogs(sortedLogs);
-      })
-  }, [dbLogList]);
-
-  useEffect(() => {
     if (logID !== '') {
       getLogData();
     }
@@ -86,7 +78,9 @@ function Home() {
         ) : logID !== '' && success === true ? (
           <div>
             <a href={`https://logs.tf/${logID}`} target='_blank'>{tfLogs.title}</a>
-            <img src='/plus-button.png' alt='Add log' className='add-button' onClick={handleSaveLog} />
+            <button style={{ background: '/plus-button.png' }} className='add-button' onClick={handleSaveLog} disabled={disabled}>
+              <img src={plusButton} alt='Add log' style={{width: '15px', height: '15px'}}/>
+            </button>
           </div>
         ) : logID === '' ? (
           <></>

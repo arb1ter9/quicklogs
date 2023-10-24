@@ -7,11 +7,15 @@
 }
 
 .add-button {
-  position: relative;
+  border-radius: 0;
   cursor: pointer;
-  border: none;
   background-color: transparent;
-  width: 30px;
-  height: 30px;
-  top: 10px;
+  position: relative;
+  padding: 2px;
+  line-height: 0;
+  top: 2px;
+}
+
+button:focus {
+  outline: 2px;
 }
